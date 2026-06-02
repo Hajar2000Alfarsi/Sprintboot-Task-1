@@ -10,4 +10,6 @@ public class HelloController {
     public String welcomeMessage() {
         return "Welcome to Code Creators Spring Boot Training!";
     }
+
+
 }

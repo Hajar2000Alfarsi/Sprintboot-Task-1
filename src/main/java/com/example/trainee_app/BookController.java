@@ -36,7 +36,7 @@ public class BookController {
     @GetMapping("/find-by-name")
     public Book findByName(@RequestParam String name){
         for (Book book : books) {
-            if(book .getName() == name) {
+            if(book.getName().equalsIgnoreCase(name)) {
                 return book;
             }
         }

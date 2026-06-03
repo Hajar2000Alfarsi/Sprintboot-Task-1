@@ -19,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping("/all-books")
-    public void allBooks() {
-
+    public List<Book> allBooks() {
+        return books;
     }
 }

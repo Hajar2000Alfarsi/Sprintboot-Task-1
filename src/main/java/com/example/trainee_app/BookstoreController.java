@@ -16,6 +16,8 @@ public class BookstoreController {
                                    @RequestParam String title,
                                    @RequestParam double price,
                                    @RequestParam int stockCount){
-
+        InventoryBook inventoryBook = new InventoryBook(bookId,title,stockCount,price);
+        inventory.add(inventoryBook);
+        return "Book added successfully to bookstore inventory!";
     }
 }

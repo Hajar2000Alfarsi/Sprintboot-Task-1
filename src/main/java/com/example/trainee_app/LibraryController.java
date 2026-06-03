@@ -13,7 +13,7 @@ public class LibraryController {
     private static List<Author> autherList= new ArrayList<>();
     private static List<Book> bookList = new ArrayList<>();
 
-    @GetMapping("/add-author")
+    @GetMapping("/addAuthor")
     public String addAuthor(@RequestParam int id,
                             @RequestParam String name,
                             @RequestParam String biography){
@@ -22,8 +22,30 @@ public class LibraryController {
         return "Author added successfully!";
     }
 
-    @GetMapping("/all-authors")
+    @GetMapping("/allAuthors")
     public List<Author> allAuthors(){
         return autherList;
     }
+
+    @GetMapping("/addRelationalBook")
+    public String addRelationalBook(@RequestParam int id,
+                                    @RequestParam String name,
+                                    @RequestParam int authorId){
+        boolean authorExists = false;
+        for (Author author : autherList){
+            if (author.getId() == authorId){
+                authorExists = true;
+                break;
+            }
+        }
+
+        if (authorExists == true){
+            Book book =  new Book(id,name,authorId);
+            bookList.add(book);
+            return "Book added successfully under valid author!";
+        } else {
+            return "Error: Author ID not found. Book was not added.";
+        }
+    }
+
 }

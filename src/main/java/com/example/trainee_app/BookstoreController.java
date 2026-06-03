@@ -40,7 +40,7 @@ public class BookstoreController {
 
     @GetMapping("lowStochReport")
     public String lowStochReport(@RequestParam int threshold){
-        String report = null;
+        String report = "";
         boolean found = false;
 
         for (InventoryBook inventoryBook : inventorylist){

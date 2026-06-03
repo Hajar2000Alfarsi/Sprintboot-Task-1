@@ -3,18 +3,12 @@ package com.example.trainee_app;
 public class Book {
     private int id;
     private String name;
+    private int authorId;
 
-    public Book(int id, String name) {
+    public Book(int id, String name, int authorId) {
         this.id = id;
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.authorId = authorId;
     }
 
     public int getId() {
@@ -23,5 +17,21 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

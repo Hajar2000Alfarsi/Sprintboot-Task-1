@@ -32,4 +32,9 @@ public class BookController {
         }
         return null;
     }
+
+    @GetMapping("/find-by-name")
+    public Book findByName(@RequestParam String name){
+
+    }
 }

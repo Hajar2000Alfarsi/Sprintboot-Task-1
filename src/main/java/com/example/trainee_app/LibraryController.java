@@ -14,11 +14,16 @@ public class LibraryController {
     private static List<Book> bookList = new ArrayList<>();
 
     @GetMapping("/add-author")
-    public String addAuther(@RequestParam int id,
+    public String addAuthor(@RequestParam int id,
                             @RequestParam String name,
                             @RequestParam String biography){
         Author author = new Author(id,name,biography);
         autherList.add(author);
         return "Author added successfully!";
+    }
+
+    @GetMapping("/all-authors")
+    public List<Author> allAuthors(){
+        return autherList;
     }
 }

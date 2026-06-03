@@ -42,4 +42,14 @@ public class BookController {
         }
         return null;
     }
+
+   @GetMapping("search-msg")
+    public String searchMsg(@RequestParam int id){
+        for (Book book: books){
+            if(book.getId() == id){
+                return "Book Found and It's name: " + book.getName();
+            }
+        }
+        return "Sorry, that book ID is not available";
+   }
 }

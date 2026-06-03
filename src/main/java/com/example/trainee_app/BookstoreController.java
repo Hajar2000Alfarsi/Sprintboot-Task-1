@@ -27,13 +27,33 @@ public class BookstoreController {
             if (inventoryBook.getBookId() == bookId) {
                 if (inventoryBook.getStockCount() > 0) {
                     return "Book Available  <br>"+
-                            "Title: " + inventoryBook.getTitle() +
+                            "Title: " + inventoryBook.getTitle() + "<br>"+
                             "Price: $" + inventoryBook.getPrice();
                 } else {
-                    return "Sold Out: " + inventoryBook.getTitle();
+                    return "Sold Out<br>" +
+                            "Title: " + inventoryBook.getTitle();
                 }
             }
         }
         return "Sorry, this bookstore does not carry that book.";
+    }
+
+    @GetMapping("lowStochReport")
+    public String lowStochReport(@RequestParam int threshold){
+        String report = null;
+        boolean found = false;
+
+        for (InventoryBook inventoryBook : inventorylist){
+            if (inventoryBook.getStockCount() <= threshold){
+                report = "Title: " + inventoryBook.getTitle() + "<br>" +
+                        "Stock: " + inventoryBook.getStockCount();
+                found = true;
+            }
+        }
+
+        if (!found){
+            return "No books currently need reordering.";
+        }
+        return report;
     }
 }

@@ -48,4 +48,44 @@ public class LibraryController {
         }
     }
 
+    @GetMapping("/authorReport")
+    public String authorReport(@RequestParam String authorName) {
+        Author foundAuthor = null;
+
+        for (Author author1 : autherList){
+            if (author1.getName().equalsIgnoreCase(authorName)){
+                foundAuthor = author1;
+                break;
+            }
+        }
+
+        if (foundAuthor ==  null) {
+            return "Error: Author not found.";
+        }
+
+        Book foundBook = null;
+
+        for (Book book : bookList) {
+            if (book.getAuthorId() == foundAuthor.getId()){
+                foundBook = book;
+                break;
+            }
+        }
+
+        StringBuilder report = new StringBuilder();
+
+        report.append("Author Report <br>");
+        report.append("------------------------------------<br>");
+        report.append("Name: ").append(foundAuthor.getName()).append("<br>");
+        report.append("Biography: ").append(foundAuthor.getBiography()).append("<br>");
+        report.append("<br>Book Written: <br>");
+        if (foundBook != null) {
+            report.append(foundBook.getName()).append("<br>");
+        } else {
+            report.append("None");
+        }
+
+        return report.toString();
+    }
+
 }

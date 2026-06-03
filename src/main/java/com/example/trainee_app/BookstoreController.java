@@ -45,8 +45,8 @@ public class BookstoreController {
 
         for (InventoryBook inventoryBook : inventorylist){
             if (inventoryBook.getStockCount() <= threshold){
-                report = "Title: " + inventoryBook.getTitle() + "<br>" +
-                        "Stock: " + inventoryBook.getStockCount();
+                report += "Title: " + inventoryBook.getTitle() + "<br>" +
+                        "Stock: " + inventoryBook.getStockCount() + "<br>";
                 found = true;
             }
         }

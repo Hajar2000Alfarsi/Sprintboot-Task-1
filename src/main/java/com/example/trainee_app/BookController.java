@@ -13,6 +13,9 @@ public class BookController {
 
     @GetMapping("/add-book")
     public String addBook(@RequestParam int id, @RequestParam String name){
-
+        Book book =new Book(id,name);
+        books.add(book);
+        return "Book added successfully!";
     }
+
 }

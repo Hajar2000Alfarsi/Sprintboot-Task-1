@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 public class BookstoreController {
-    private static List<InventoryBook> inventory = new ArrayList<>();
+    private static List<InventoryBook> inventorylist = new ArrayList<>();
 
     @GetMapping("addInventoryBook")
     public String addInventoryBook(@RequestParam int bookId,
@@ -17,7 +17,23 @@ public class BookstoreController {
                                    @RequestParam double price,
                                    @RequestParam int stockCount){
         InventoryBook inventoryBook = new InventoryBook(bookId,title,stockCount,price);
-        inventory.add(inventoryBook);
+        inventorylist.add(inventoryBook);
         return "Book added successfully to bookstore inventory!";
+    }
+
+    @GetMapping("checkStock")
+    public String checkStock(@RequestParam int bookId) {
+        for (InventoryBook inventoryBook : inventorylist) {
+            if (inventoryBook.getBookId() == bookId) {
+                if (inventoryBook.getStockCount() > 0) {
+                    return "Book Available  <br>"+
+                            "Title: " + inventoryBook.getTitle() +
+                            "Price: $" + inventoryBook.getPrice();
+                } else {
+                    return "Sold Out: " + inventoryBook.getTitle();
+                }
+            }
+        }
+        return "Sorry, this bookstore does not carry that book.";
     }
 }
